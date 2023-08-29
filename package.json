@@ -1,0 +1,22 @@
+{
+  "name": "be-assessment",
+  "version": "1.0.0",
+  "description": "Build an uptime monitoring RESTful API server that allows authenticated users to monitor URLs, and get detailed uptime reports about their availability, average response time, and total uptime/downtime.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "nodemailer": "^6.9.4",
+    "nodemon": "^3.0.1",
+    "randombytes": "^2.1.0",
+    "sequelize": "^6.32.1"
+  },
+  "type": "module"
+}
