@@ -14,7 +14,7 @@ services:
       - 3306
   web:
     build: .
-    # restart: always
+    restart: always
     ports:
       - "3000:3000"
     environment:
@@ -22,7 +22,8 @@ services:
       - DATABASE_PASSWORD=bosta_app
       - DATABASE_DATABASE_NAME=bosta_db
       - DATABASE_HOST=mysql
-      
       - BASE_LINK=http://adhamnourmainpc:3000
+    env_file:
+      - .env
     depends_on:
       - mysql
