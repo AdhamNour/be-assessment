@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createCheck = exports.getAllChecks = void 0;
+exports.deleteCheck = exports.getCheckById = exports.createCheck = exports.getAllChecks = void 0;
 
 var _AssertionModel = require("../model/Assertion.model.js");
 
@@ -142,3 +142,95 @@ var createCheck = function createCheck(req, res) {
 };
 
 exports.createCheck = createCheck;
+
+var getCheckById = function getCheckById(req, res) {
+  var id, user, result;
+  return regeneratorRuntime.async(function getCheckById$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          id = req.params.id;
+          user = req.user;
+          _context3.next = 4;
+          return regeneratorRuntime.awrap(user.getChecks({
+            where: {
+              id: id
+            },
+            include: [{
+              model: _AssertionModel.CheckAssertion,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }, {
+              model: _authenticationModel.CheckAuthentication,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }],
+            attributes: {
+              exclude: ["UserId"]
+            }
+          }));
+
+        case 4:
+          result = _context3.sent;
+          return _context3.abrupt("return", res.json(result[0]));
+
+        case 6:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  });
+};
+
+exports.getCheckById = getCheckById;
+
+var deleteCheck = function deleteCheck(req, res) {
+  var id, user, result;
+  return regeneratorRuntime.async(function deleteCheck$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          id = req.params.id;
+          user = req.user;
+          _context4.next = 4;
+          return regeneratorRuntime.awrap(user.getChecks({
+            where: {
+              id: id
+            },
+            include: [{
+              model: _AssertionModel.CheckAssertion,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }, {
+              model: _authenticationModel.CheckAuthentication,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }],
+            attributes: {
+              exclude: ["UserId"]
+            }
+          }));
+
+        case 4:
+          result = _context4.sent;
+          _context4.next = 7;
+          return regeneratorRuntime.awrap(result[0].destroy());
+
+        case 7:
+          return _context4.abrupt("return", res.json({
+            message: 'success'
+          }));
+
+        case 8:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+};
+
+exports.deleteCheck = deleteCheck;

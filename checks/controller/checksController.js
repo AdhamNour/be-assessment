@@ -50,3 +50,27 @@ export const createCheck = async (req, res) => {
         return res.status(500).json(error);
     }
 }
+
+export const getCheckById = async (req, res) => {
+    const { id } = req.params;
+    const { user } = req;
+    const result = await user.getChecks({
+        where: { id }, include: [
+            { model: CheckAssertion, attributes: { exclude: ["id", "CheckId"] } },
+            { model: CheckAuthentication, attributes: { exclude: ["id", "CheckId"] } }], attributes: { exclude: ["UserId"] }
+    })
+    return res.json(result[0]);
+
+}
+export const deleteCheck = async (req, res) => {
+    const { id } = req.params;
+    const { user } = req;
+    const result = await user.getChecks({
+        where: { id }, include: [
+            { model: CheckAssertion, attributes: { exclude: ["id", "CheckId"] } },
+            { model: CheckAuthentication, attributes: { exclude: ["id", "CheckId"] } }], attributes: { exclude: ["UserId"] }
+    })
+    await result[0].destroy();
+    return res.json({message:'success'});
+
+}
