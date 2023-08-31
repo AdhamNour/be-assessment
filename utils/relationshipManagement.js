@@ -2,7 +2,6 @@ import { User } from '../user/model/user.model.js';
 import { Token } from '../user/model/token.model.js';
 
 import { CheckAssertion } from '../checks/model/Assertion.model.js'
-import { CheckHttpHeader } from '../checks/model/HttpHeaders.model.js'
 import { CheckAuthentication } from '../checks/model/authentication.model.js'
 import { Check } from '../checks/model/check.model.js'
 
@@ -25,11 +24,7 @@ export const manageRelationship = () => {
     })
     CheckAssertion.belongsTo(Check);
 
-    Check.hasMany(CheckHttpHeader, {
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    });
-    CheckHttpHeader.belongsTo(Check);
+
 
     User.hasMany(Check, {
         onDelete: 'CASCADE',

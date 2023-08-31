@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 
 const sendEmail = (to, subject, content) => {
+    console.log( process.env.EMAIL)
     var transporter = nodemailer.createTransport({
         service: 'outlook365',
         secure: true,

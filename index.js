@@ -8,6 +8,8 @@ import {manageRelationship} from './utils/relationshipManagement.js';
 import {checksRouter} from './checks/routes/checks.routes.js';
 import {authorize} from './middleware/Authrize.js';
 
+dotenv.config()
+
 
 const app = express();
 app.use(express.json());
@@ -19,4 +21,4 @@ sequelize.authenticate().then(async () => {
     manageRelationship();
     await sequelize.sync();
     app.listen(3000, () => { console.log("App is Running") })
-}).catch(err => { console.log(err) });
+});

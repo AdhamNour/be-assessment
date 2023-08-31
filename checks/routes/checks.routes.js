@@ -1,9 +1,13 @@
 import { Router } from "express";
+import {getAllChecks,createCheck} from '../controller/checksController.js';
+import {notNullValidator }from '../controller/checkValidator.js' 
+import {authenticationValidator} from '../controller/checkValidator.js';
+import {assertionValidator} from '../controller/checkValidator.js';
 
 export const checksRouter = Router();
 
-checksRouter.get('/', (req, res) => { res.send("this is get all routes"); });
-checksRouter.post('/', (req, res) => { res.send("this is get all routes"); });
+checksRouter.get('/', getAllChecks);
+checksRouter.post('/',notNullValidator,authenticationValidator,assertionValidator,createCheck);
 
 checksRouter.get('/:id', (req, res) => { res.send("this is id of target check " + req.params.id); });
 checksRouter.put('/:id', (req, res) => { res.send("this is id of target check " + req.params.id); });

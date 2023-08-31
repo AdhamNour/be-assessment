@@ -3,14 +3,15 @@ import {sequelize} from '../../utils/db.js';
 export const Check = sequelize.define('Check', {
     id: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4, primaryKey: true
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
     }, name: {
         type: DataTypes.STRING,
         allowNull: false
     },
     url: {
         type: DataTypes.STRING,
-        allowNull: false, unique: true
+        allowNull: false,
     },
     protocol: {
         type: DataTypes.STRING,
@@ -38,7 +39,10 @@ export const Check = sequelize.define('Check', {
         type:DataTypes.STRING
     },
     ignoreSSL:{
-        type:DataTypes.BOOLEAN,allowNull:false
+        type:DataTypes.BOOLEAN,
+        allowNull:false
+    },httpHeaders:{
+        type:DataTypes.STRING,allowNull:true
     }
 }, {
     // don't forget to enable timestamps!
@@ -46,5 +50,10 @@ export const Check = sequelize.define('Check', {
 
     // I don't want createdAt
     createdAt: false,
-    updatedAt: false,
+    updatedAt: false,indexes:[
+        {
+            unique:true,
+            fields:['url','UserId']
+        }
+    ]
 });

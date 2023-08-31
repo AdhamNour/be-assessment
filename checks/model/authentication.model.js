@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../utils/db.js';
-export const CheckAuthentication = sequelize.define('CheckAuthentication', {
+export const CheckAuthentication = sequelize.define('authentication', {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4, primaryKey: true
