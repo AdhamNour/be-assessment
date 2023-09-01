@@ -16,7 +16,5 @@ exports.checksRouter = checksRouter;
 checksRouter.get('/', _checksController.getAllChecks);
 checksRouter.post('/', _checkValidator.notNullValidator, _checkValidator.authenticationValidator, _checkValidator.assertionValidator, _checksController.createCheck);
 checksRouter.get('/:id', _checksController.getCheckById);
-checksRouter.put('/:id', function (req, res) {
-  res.send("this is id of target check " + req.params.id);
-});
+checksRouter.put('/:id', _checksController.updateCheck);
 checksRouter["delete"]('/:id', _checksController.deleteCheck);

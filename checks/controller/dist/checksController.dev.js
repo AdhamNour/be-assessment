@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteCheck = exports.getCheckById = exports.createCheck = exports.getAllChecks = void 0;
+exports.updateCheck = exports.deleteCheck = exports.getCheckById = exports.createCheck = exports.getAllChecks = void 0;
 
 var _AssertionModel = require("../model/Assertion.model.js");
 
@@ -234,3 +234,136 @@ var deleteCheck = function deleteCheck(req, res) {
 };
 
 exports.deleteCheck = deleteCheck;
+
+var updateCheck = function updateCheck(req, res) {
+  var id, user, result, updateObject, toBeSet, _req$body2, authentication, assertion, username, password, nwq_authentication, statusCode, new_assertion;
+
+  return regeneratorRuntime.async(function updateCheck$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          id = req.params.id;
+          user = req.user;
+          _context5.next = 4;
+          return regeneratorRuntime.awrap(user.getChecks({
+            where: {
+              id: id
+            },
+            include: [{
+              model: _AssertionModel.CheckAssertion,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }, {
+              model: _authenticationModel.CheckAuthentication,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }],
+            attributes: {
+              exclude: ["UserId"]
+            }
+          }));
+
+        case 4:
+          result = _context5.sent;
+          updateObject = {};
+          toBeSet = Object.keys(req.body).filter(function (e) {
+            return !['token', 'authentication', 'assertion'].includes(e) && Object.keys(result[0].toJSON()).includes(e);
+          });
+          toBeSet.forEach(function (e) {
+            return updateObject[e] = req.body[e].toString();
+          });
+          result[0].set(updateObject);
+          _req$body2 = req.body, authentication = _req$body2.authentication, assertion = _req$body2.assertion;
+
+          if (!authentication) {
+            _context5.next = 19;
+            break;
+          }
+
+          username = authentication.username, password = authentication.password;
+          _context5.next = 14;
+          return regeneratorRuntime.awrap(result[0].getAuthentication());
+
+        case 14:
+          nwq_authentication = _context5.sent;
+
+          if (username) {
+            nwq_authentication.set({
+              username: username
+            });
+          }
+
+          if (password) {
+            nwq_authentication.set({
+              password: password
+            });
+          }
+
+          _context5.next = 19;
+          return regeneratorRuntime.awrap(nwq_authentication.save());
+
+        case 19:
+          if (!assertion) {
+            _context5.next = 28;
+            break;
+          }
+
+          statusCode = assertion.statusCode;
+          _context5.next = 23;
+          return regeneratorRuntime.awrap(result[0].getAssertion());
+
+        case 23:
+          new_assertion = _context5.sent;
+
+          if (!statusCode) {
+            _context5.next = 28;
+            break;
+          }
+
+          new_assertion.set({
+            statusCode: statusCode
+          });
+          _context5.next = 28;
+          return regeneratorRuntime.awrap(new_assertion.save());
+
+        case 28:
+          _context5.next = 30;
+          return regeneratorRuntime.awrap(result[0].save());
+
+        case 30:
+          _context5.next = 32;
+          return regeneratorRuntime.awrap(user.getChecks({
+            where: {
+              id: id
+            },
+            include: [{
+              model: _AssertionModel.CheckAssertion,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }, {
+              model: _authenticationModel.CheckAuthentication,
+              attributes: {
+                exclude: ["id", "CheckId"]
+              }
+            }],
+            attributes: {
+              exclude: ["UserId"]
+            }
+          }));
+
+        case 32:
+          result = _context5.sent;
+          return _context5.abrupt("return", res.json(result[0]));
+
+        case 34:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  });
+};
+
+exports.updateCheck = updateCheck;

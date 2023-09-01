@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {getAllChecks,createCheck,getCheckById,deleteCheck} from '../controller/checksController.js';
+import {getAllChecks,createCheck,getCheckById,deleteCheck,updateCheck} from '../controller/checksController.js';
 import {notNullValidator }from '../controller/checkValidator.js' 
 import {authenticationValidator} from '../controller/checkValidator.js';
 import {assertionValidator} from '../controller/checkValidator.js';
@@ -10,6 +10,6 @@ checksRouter.get('/', getAllChecks);
 checksRouter.post('/',notNullValidator,authenticationValidator,assertionValidator,createCheck);
 
 checksRouter.get('/:id', getCheckById);
-checksRouter.put('/:id', (req, res) => { res.send("this is id of target check " + req.params.id); });
+checksRouter.put('/:id',updateCheck);
 checksRouter.delete('/:id',deleteCheck);
 
