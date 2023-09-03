@@ -34,7 +34,6 @@ var _default = _nodeCron["default"].schedule('* * * * * *', function _callee4() 
 
         case 2:
           checks = _context4.sent;
-          console.log("cron job starts");
           checks.forEach(function _callee3(check) {
             var start, _ref, _ref2, lastReport;
 
@@ -42,7 +41,6 @@ var _default = _nodeCron["default"].schedule('* * * * * *', function _callee4() 
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
-                    // console.log(check.toJSON());
                     start = Date.now();
                     _context3.next = 3;
                     return regeneratorRuntime.awrap(check.getReports({
@@ -62,67 +60,65 @@ var _default = _nodeCron["default"].schedule('* * * * * *', function _callee4() 
                         while (1) {
                           switch (_context.prev = _context.next) {
                             case 0:
-                              console.log("Successfull request");
-                              _context.prev = 1;
-                              _context.next = 4;
+                              _context.prev = 0;
+                              _context.next = 3;
                               return regeneratorRuntime.awrap(check.createReport({
                                 startTime: start,
                                 finishTime: Date.now(),
                                 status: true
                               }));
 
-                            case 4:
+                            case 3:
                               if (lastReport.status == false) {
                                 (0, _sendEmail.sendNotificationEmail)(check);
                               }
 
-                              _context.next = 10;
+                              _context.next = 9;
                               break;
 
-                            case 7:
-                              _context.prev = 7;
-                              _context.t0 = _context["catch"](1);
+                            case 6:
+                              _context.prev = 6;
+                              _context.t0 = _context["catch"](0);
                               console.log(_context.t0);
 
-                            case 10:
+                            case 9:
                             case "end":
                               return _context.stop();
                           }
                         }
-                      }, null, null, [[1, 7]]);
+                      }, null, null, [[0, 6]]);
                     })["catch"](function _callee2() {
                       return regeneratorRuntime.async(function _callee2$(_context2) {
                         while (1) {
                           switch (_context2.prev = _context2.next) {
                             case 0:
-                              console.log("Failed request");
-                              _context2.prev = 1;
-                              _context2.next = 4;
+                              _context2.prev = 0;
+                              _context2.next = 3;
                               return regeneratorRuntime.awrap(check.createReport({
                                 startTime: start,
                                 finishTime: Date.now(),
                                 status: false
                               }));
 
-                            case 4:
+                            case 3:
                               if (lastReport.status == true) {
                                 (0, _sendEmail.sendNotificationEmail)(check);
                               }
 
-                              _context2.next = 10;
+                              _context2.next = 9;
                               break;
 
-                            case 7:
-                              _context2.prev = 7;
-                              _context2.t0 = _context2["catch"](1);
+                            case 6:
+                              _context2.prev = 6;
+                              _context2.t0 = _context2["catch"](0);
                               console.log(_context2.t0);
 
-                            case 10:
+                            case 9:
                             case "end":
                               return _context2.stop();
                           }
                         }
-                      }, null, null, [[1, 7]]);
+                      }, null, null, [[0, 6]]);
                     });
 
                   case 7:
@@ -133,7 +129,7 @@ var _default = _nodeCron["default"].schedule('* * * * * *', function _callee4() 
             });
           });
 
-        case 5:
+        case 4:
         case "end":
           return _context4.stop();
       }

@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import { UserRouter } from './user/routes/user.route.js';
 import {manageRelationship} from './utils/relationshipManagement.js';
 import {checksRouter} from './checks/routes/checks.routes.js';
+import {reportRouter} from './reports/routes/reports.routes.js';
 import {authorize} from './middleware/Authrize.js';
 import cronjob from './cron.js'
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/users",UserRouter)
 app.use("/checks",authorize,checksRouter)
+app.use("/reports",authorize,reportRouter)
 
 sequelize.authenticate().then(async () => {
     manageRelationship();

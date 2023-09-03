@@ -12,6 +12,8 @@ var _relationshipManagement = require("./utils/relationshipManagement.js");
 
 var _checksRoutes = require("./checks/routes/checks.routes.js");
 
+var _reportsRoutes = require("./reports/routes/reports.routes.js");
+
 var _Authrize = require("./middleware/Authrize.js");
 
 var _cron = _interopRequireDefault(require("./cron.js"));
@@ -24,6 +26,7 @@ var app = (0, _express["default"])();
 app.use(_express["default"].json());
 app.use("/users", _userRoute.UserRouter);
 app.use("/checks", _Authrize.authorize, _checksRoutes.checksRouter);
+app.use("/reports", _Authrize.authorize, _reportsRoutes.reportRouter);
 
 _db.sequelize.authenticate().then(function _callee() {
   return regeneratorRuntime.async(function _callee$(_context) {
