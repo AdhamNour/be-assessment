@@ -38,6 +38,9 @@ export const verify = async (req, res) => {
 export const signin = async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ where: { email } })
+    if(!user){
+        return res.status(404).json({ message: "there is no such user"});
+    }
     if (user.password === password) {
         return res.status(200).json({
             token: jwt.sign(user.id, "SECRET")

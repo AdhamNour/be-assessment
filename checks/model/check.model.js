@@ -38,7 +38,7 @@ export const Check = sequelize.define('Check', {
         type:DataTypes.INTEGER,
         defaultValue:1
     },
-    tages:{
+    tags:{
         type:DataTypes.STRING
     },
     ignoreSSL:{

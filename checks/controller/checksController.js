@@ -22,9 +22,9 @@ export const getAllChecks = async (req, res) => {
 
 export const createCheck = async (req, res) => {
     const { user } = req;
-    const { name, url, protocol, ignoreSSL, httpHeaders, tages, path, port, webhook, timeout, interval, threshold } = req.body;
+    const { name, url, protocol, ignoreSSL, httpHeaders, tags, path, port, webhook, timeout, interval, threshold } = req.body;
     try {
-        const check = await user.createCheck({ name, url, protocol, ignoreSSL, tages, httpHeaders: JSON.stringify(httpHeaders), path, port, webhook, timeout, interval });
+        const check = await user.createCheck({ name, url, protocol, ignoreSSL, tags, httpHeaders: JSON.stringify(httpHeaders), path, port, webhook, timeout, interval });
         if (req.authentication) {
             console.log(req.authentication);
             await check.createAuthentication(req.authentication);

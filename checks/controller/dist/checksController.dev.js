@@ -51,14 +51,14 @@ var getAllChecks = function getAllChecks(req, res) {
 exports.getAllChecks = getAllChecks;
 
 var createCheck = function createCheck(req, res) {
-  var user, _req$body, name, url, protocol, ignoreSSL, httpHeaders, tages, path, port, webhook, timeout, interval, threshold, check, result, _name;
+  var user, _req$body, name, url, protocol, ignoreSSL, httpHeaders, tags, path, port, webhook, timeout, interval, threshold, check, result, _name;
 
   return regeneratorRuntime.async(function createCheck$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           user = req.user;
-          _req$body = req.body, name = _req$body.name, url = _req$body.url, protocol = _req$body.protocol, ignoreSSL = _req$body.ignoreSSL, httpHeaders = _req$body.httpHeaders, tages = _req$body.tages, path = _req$body.path, port = _req$body.port, webhook = _req$body.webhook, timeout = _req$body.timeout, interval = _req$body.interval, threshold = _req$body.threshold;
+          _req$body = req.body, name = _req$body.name, url = _req$body.url, protocol = _req$body.protocol, ignoreSSL = _req$body.ignoreSSL, httpHeaders = _req$body.httpHeaders, tags = _req$body.tags, path = _req$body.path, port = _req$body.port, webhook = _req$body.webhook, timeout = _req$body.timeout, interval = _req$body.interval, threshold = _req$body.threshold;
           _context2.prev = 2;
           _context2.next = 5;
           return regeneratorRuntime.awrap(user.createCheck({
@@ -66,7 +66,7 @@ var createCheck = function createCheck(req, res) {
             url: url,
             protocol: protocol,
             ignoreSSL: ignoreSSL,
-            tages: tages,
+            tags: tags,
             httpHeaders: JSON.stringify(httpHeaders),
             path: path,
             port: port,

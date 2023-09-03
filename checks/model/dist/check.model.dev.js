@@ -48,7 +48,7 @@ var Check = _db.sequelize.define('Check', {
     type: _sequelize.DataTypes.INTEGER,
     defaultValue: 1
   },
-  tages: {
+  tags: {
     type: _sequelize.DataTypes.STRING
   },
   ignoreSSL: {
