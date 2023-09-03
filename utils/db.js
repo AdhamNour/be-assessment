@@ -6,9 +6,9 @@ export const sequelize = new Sequelize({
     password: '1234',
     database: 'bosta_db',
     logging:(logging)=>{
-        console.log('\n====================================');
-        console.log(logging);
-        console.log('====================================\n');
+        // console.log('\n====================================');
+        // console.log(logging);
+        // console.log('====================================\n');
     }
 })
 // export const sequelize = new Sequelize({

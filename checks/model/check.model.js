@@ -23,6 +23,9 @@ export const Check = sequelize.define('Check', {
     webhook:{
         type: DataTypes.STRING,
     },
+    path:{
+        type: DataTypes.STRING,
+    },
     timeout:{
         type: DataTypes.INTEGER,
         defaultValue:5
@@ -53,7 +56,7 @@ export const Check = sequelize.define('Check', {
     updatedAt: false,indexes:[
         {
             unique:true,
-            fields:['url','UserId']
+            fields:['url','UserId','port']
         }
     ]
 });

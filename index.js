@@ -7,6 +7,7 @@ import { UserRouter } from './user/routes/user.route.js';
 import {manageRelationship} from './utils/relationshipManagement.js';
 import {checksRouter} from './checks/routes/checks.routes.js';
 import {authorize} from './middleware/Authrize.js';
+import cronjob from './cron.js'
 
 dotenv.config()
 
